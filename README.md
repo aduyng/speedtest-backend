@@ -34,3 +34,5 @@ I use this backend in my Raspberry Pi to report the speedtest periodically for t
     ```
 
 Wallah, check your firebase data to see the data reported.
+![Result in Firebase](https://github.com/aduyng/speedtest-backend/raw/master/docs/images/db-in-firebase.png "Result in Firebase")
+
