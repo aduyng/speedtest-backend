@@ -1,12 +1,20 @@
-import speedtest from "speedtest-net";
-import config from "./config";
+import moment from "moment";
+import saveTestResult from "./saveTestResult";
+import job from "./job";
 
-export default () => new Promise((resolve, reject) => {
+export default () => {
+  const startTime = moment();
+  console.log(`Started at ${startTime.format("YYYY-MM-DD HH:mm:ss A")}`);
 
-  const test = speedtest({
-    maxTime: config.speedtest.maxTime
+  return job()
+  .then(result => saveTestResult({result}))
+  .then(() => {
+    const endTime = moment();
+    console.log(`Completed at ${endTime.format("YYYY-MM-DD HH:mm:ss A")} took ${endTime.valueOf() - startTime.valueOf()}ms`);
+    process.exit(0);
+  })
+  .catch(error => {
+    console.error(error);
+    process.exit(error.code || 1);
   });
-
-  test.on('data', resolve);
-  test.on('error', reject);
-});
+};
