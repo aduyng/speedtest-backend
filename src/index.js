@@ -1,3 +1,9 @@
+import Promise from "bluebird";
 import runSpeedTest from "./runSpeedTest";
+import saveDownErrors from "./saveDownErrors";
 
-runSpeedTest();
+Promise.all([
+  runSpeedTest(),
+  saveDownErrors()
+])
+.then(() => process.exit(0));

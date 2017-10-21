@@ -1,4 +1,8 @@
+import path from "path";
+
 export default {
+  root: __dirname,
+  logDir: path.join(__dirname, 'logs'),
   firebase: {
     databaseUrl: "https://speedtest-a288c.firebaseio.com",
     serviceAccount: {
@@ -15,7 +19,6 @@ export default {
     }
   },
   speedtest: {
-    maxTime: 5000,
-    interval: 15 * 60 * 1000
+    maxTime: 5000
   }
 }
